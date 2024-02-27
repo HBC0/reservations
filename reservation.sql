@@ -11,11 +11,27 @@
  Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 27/02/2024 15:28:19
+ Date: 27/02/2024 17:58:39
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for hotel
+-- ----------------------------
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE `hotel`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `inventory` int NULL DEFAULT NULL COMMENT '剩余房间数量',
+  `createTime` datetime NULL DEFAULT NULL,
+  `updateTime` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of hotel
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for order
@@ -23,7 +39,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '订单id',
-  `number` int NULL DEFAULT NULL COMMENT '订单编号',
+  `number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '订单编号',
   `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `updateTime` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `payment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '支付方式',
@@ -72,6 +88,7 @@ CREATE TABLE `room`  (
   `details` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '详细信息',
   `status` tinyint NULL DEFAULT NULL COMMENT '房间状态（是否空闲）',
   `reviews` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '评论信息',
+  `hotelId` int NULL DEFAULT NULL COMMENT '酒店id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -88,12 +105,14 @@ CREATE TABLE `users`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
   `phoneNumber` int NULL DEFAULT NULL COMMENT '手机号',
+  `createTime` datetime NULL DEFAULT NULL,
+  `updateTime` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'h', '123', 123);
+INSERT INTO `users` VALUES (1, 'h', '123', 123, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

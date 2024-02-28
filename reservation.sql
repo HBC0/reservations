@@ -11,7 +11,7 @@
  Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 28/02/2024 09:14:26
+ Date: 28/02/2024 10:57:18
 */
 
 SET NAMES utf8mb4;
@@ -23,10 +23,12 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE `hotel`  (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '酒店id',
-  `inventory` int NULL DEFAULT NULL COMMENT '剩余房间数量',
   `createTime` datetime NULL DEFAULT NULL,
   `updateTime` datetime NULL DEFAULT NULL,
+  `roomInventory` int NULL DEFAULT NULL COMMENT '剩余房间数量',
+  `reserved` int NULL DEFAULT NULL COMMENT '已经预订出去的房间数量。',
   `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '地址',
+  `date` datetime NULL DEFAULT NULL COMMENT '日期',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -69,7 +71,7 @@ CREATE TABLE `picture`  (
   `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
   `roomId` int NULL DEFAULT NULL COMMENT '房间id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of picture
@@ -107,12 +109,14 @@ CREATE TABLE `users`  (
   `phoneNumber` int NULL DEFAULT NULL COMMENT '手机号',
   `createTime` datetime NULL DEFAULT NULL,
   `updateTime` datetime NULL DEFAULT NULL,
+  `email` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '邮箱',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'h', '123', 123, NULL, NULL);
+INSERT INTO `users` VALUES (1, 'h', '123', 123, NULL, NULL, NULL);
+INSERT INTO `users` VALUES (2, 'jack', '132', 12341234, '2024-02-28 10:47:35', '2024-02-28 10:47:35', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

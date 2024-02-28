@@ -9,6 +9,7 @@ public class User {
     private Integer id;
     private String name;
     private String password;
+    private String email;
     private String phoneNumber;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;

@@ -11,7 +11,7 @@
  Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 29/02/2024 16:42:43
+ Date: 29/02/2024 16:55:46
 */
 
 SET NAMES utf8mb4;
@@ -47,8 +47,8 @@ CREATE TABLE `order`  (
   `status` tinyint NULL DEFAULT NULL COMMENT '订单状态（未支付，已支付，已取消，已完成）',
   `room_id` int NULL DEFAULT NULL COMMENT '房间id',
   `user_id` int NULL DEFAULT NULL COMMENT '用户id',
-  `start_date` datetime NULL DEFAULT NULL COMMENT '开始时间',
-  `end_date` datetime NULL DEFAULT NULL COMMENT '结束时间',
+  `start_date` date NULL DEFAULT NULL COMMENT '开始时间',
+  `end_date` date NULL DEFAULT NULL COMMENT '结束时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `index`(`room_id` ASC, `user_id` ASC) USING BTREE
@@ -108,7 +108,7 @@ CREATE TABLE `room_inventory`  (
   `room_id` int NULL DEFAULT NULL COMMENT '房间标识',
   `room_inventory` int NULL DEFAULT NULL COMMENT '剩余房间数量(房间总数减去不可用房间数)',
   `room_reserved` int NULL DEFAULT NULL COMMENT '已经预订出去的房间数量。',
-  `date` datetime NULL DEFAULT NULL COMMENT '日期',
+  `date` date NULL DEFAULT NULL COMMENT '日期',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `index`(`hotel_id` ASC, `room_id` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -128,7 +128,7 @@ CREATE TABLE `users`  (
   `phone_number` int NULL DEFAULT NULL COMMENT '手机号',
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
-  `email` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '邮箱',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `index_phontNumber`(`phone_number` ASC) USING BTREE COMMENT '唯一索引',
   UNIQUE INDEX `index_email`(`email` ASC) USING BTREE

@@ -23,7 +23,7 @@ public interface UserDao {
      * 注册
      * @param user 用户信息
      */
-    @Insert("insert into users(name, password,email,createTime,updateTime)" +
+    @Insert("insert into users(name, password,email,create_time,update_time)" +
             " values (#{name},#{password},#{email},#{createTime},#{updateTime})")
     void addUser(User user);
 

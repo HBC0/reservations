@@ -43,7 +43,7 @@ public class UserController {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("emailCode", code);
+        session.setAttribute(email, code);
         session.setMaxInactiveInterval(60);
 
         return Result.success("邮件发送成功");
@@ -70,7 +70,7 @@ public class UserController {
 
         //检查验证码
         HttpSession session = request.getSession();
-        String code = (String) session.getAttribute("emailCode");
+        String code = (String) session.getAttribute((String) map.get("email"));
         if (StringUtils.isBlank(code)){
             return Result.error("验证码过期，请重新获取");
         }
@@ -85,7 +85,6 @@ public class UserController {
 
 
     //登录
-
     @GetMapping("/login")
     public Result<?> login (@RequestParam Map<String,Object> map){
 

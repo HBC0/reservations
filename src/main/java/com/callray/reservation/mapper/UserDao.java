@@ -13,6 +13,12 @@ public interface UserDao {
     @Select("select * from users")
     List<User> selectUserAll();
 
+    @Select("select * from users where email = #{email}")
+    User findByEmail(String email);
+
+    @Select("select password from users where email = #{email}")
+    String findPasswordByEmail(String email);
+
     /**
      * 注册
      * @param user 用户信息
@@ -21,7 +27,6 @@ public interface UserDao {
             " values (#{name},#{password},#{email},#{createTime},#{updateTime})")
     void addUser(User user);
 
-
     /**
      * 更改邮箱，密码
      * @param user pass
@@ -29,5 +34,11 @@ public interface UserDao {
      */
     @Update("update users set password = #{password}, email = #{email} where id = #{id}")
     Boolean updateUser(User user);
+
+    @Select("select count(id) from users where email = #{email}")
+    Integer findEmail(String email);
+
+    @Select("select password from users where email=#{email}")
+    String queryPasswordForEmail(String email);
 
 }

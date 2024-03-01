@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callray.reservation.mapper.TestMapper">
+    <!-- 使用 XML 定义的 SQL 语句 -->
+
+    <!--批量新增-->
+    <insert id="batchAdd" parameterType="java.util.List">
+        insert into test(name,age)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name},#{item.age})
+        </foreach>
+    </insert>
+
+
+<!--        <insert id="addPet" parameterType="com.example.pet.entity.Pet">-->
+<!--            insert into pet.pet <include refid="insertFields"> </include>-->
+<!--            value #{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}-->
+<!--        </insert>-->
+
+
+
+</mapper>

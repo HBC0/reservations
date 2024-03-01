@@ -6,9 +6,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class Hotel {
+public class Inventory {
+
     private Integer id;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private String address;
+    private Integer inventory;
+    private Integer reserved;
+    private LocalDate date;
+    private Integer roomId;
+    private Integer hotelId;
+
 }
